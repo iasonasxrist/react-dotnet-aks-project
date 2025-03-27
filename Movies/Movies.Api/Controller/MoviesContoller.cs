@@ -57,13 +57,6 @@ public class MoviesContoller : ControllerBase
         // }
     }
 
-    [HttpGet(ApiEndpoints.Movies.GetAll)]
-    public async Task<IActionResult> GetAll()
-    {
-        var movies = await _movieRepository.GetAllAsync();
-        var response = movies.MapToResponse();
-        return Ok(response);
-    }
 
     [HttpPut(ApiEndpoints.Movies.Update)]
     public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateMovieRequest request)
@@ -77,17 +70,5 @@ public class MoviesContoller : ControllerBase
         var response = movie.MapToResponse();
         return Ok(response);
     }
-    
-    [HttpDelete(ApiEndpoints.Movies.Delete)]
-    public async Task<IActionResult> Update([FromRoute] Guid id)
-    {
-        var deleted = await _movieRepository.DeleteAsync(id);
-        if (!deleted)
-        {
-            return NotFound();
-        }
-        return Ok();
-    }
-
     
 }

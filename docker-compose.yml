@@ -12,6 +12,15 @@
     volumes:
       - sql:/var/opt/postgres
 
-
+  movieapi:
+    image: mcr.microsoft.com/dotnet/sdk:9.0
+    container_name: dotnet-backend
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      - "5000:80"
+    depends_on:
+      - sql
 volumes:
   sql:

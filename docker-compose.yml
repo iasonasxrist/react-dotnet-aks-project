@@ -1,5 +1,5 @@
 ﻿services:
-  sql:
+  sql-shard1:
     image: postgres:16
     restart: no
     environment:
@@ -10,7 +10,21 @@
       - "5432:5432"
     
     volumes:
-      - sql:/var/opt/postgres
+      - sql-shard1:/var/opt/postgres
+    
+  sql-shard2:
+    image: postgres:16
+    restart: no
+    environment:
+      - POSTGRES_USER=master
+      - POSTGRES_PASSWORD=YourStrong!Passw0rd
+      - POSTGRES_DB=movies
+    ports:
+      - "5432:5432"
+    
+    volumes:
+      - sql-shard2:/var/opt/postgres
+    
 
   movieapi:
     image: mcr.microsoft.com/dotnet/sdk:9.0
@@ -21,6 +35,8 @@
     ports:
       - "5000:80"
     depends_on:
-      - sql
+      - sql-shard1
+      - sql-shard2
 volumes:
-  sql:
+  sql-shard1:
+  sql-shard2:

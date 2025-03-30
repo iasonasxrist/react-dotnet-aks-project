@@ -6,4 +6,8 @@ public class MovieResponse
     
     public required string Title { get; init; }
     
+
+    public required string Slug { get; init; }
+
+
 }

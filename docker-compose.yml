@@ -1,42 +1,40 @@
-﻿services:
-  sql-shard1:
-    image: postgres:16
-    restart: no
-    environment:
-      - POSTGRES_USER=master
-      - POSTGRES_PASSWORD=YourStrong!Passw0rd
-      - POSTGRES_DB=movies
-    ports:
-      - "5432:5432"
+﻿version: '3.9'
+services:
+    mssql:
+      image: mcr.microsoft.com/mssql/server:2022-latest
+      environment:
+        - ACCEPT_EULA=Y
+        - SA_PASSWORD=YourStrong@Passw0rd
+        - MSSQL_PID=Express
+      ports:
+        - "1433:1433"
+      volumes:
+        - mssql-data:/var/opt/mssql
+      networks:
+        - movies-network
+      healthcheck:
+        test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "$$SA_PASSWORD" -Q "SELECT 1" -b -o /dev/null
+        interval: 10s
+        timeout: 5s
+        retries: 5
     
-    volumes:
-      - sql-shard1:/var/opt/postgres
-    
-  sql-shard2:
-    image: postgres:16
-    restart: no
-    environment:
-      - POSTGRES_USER=master
-      - POSTGRES_PASSWORD=YourStrong!Passw0rd
-      - POSTGRES_DB=movies
-    ports:
-      - "5432:5432"
-    
-    volumes:
-      - sql-shard2:/var/opt/postgres
-    
-
-  movieapi:
-    image: mcr.microsoft.com/dotnet/sdk:9.0
-    container_name: dotnet-backend
-    volumes:
-      - .:/app
-    working_dir: /app
-    ports:
-      - "5000:80"
-    depends_on:
-      - sql-shard1
-      - sql-shard2
+    movieapi:
+      build:
+        context: ./Movies/Movies.Api
+        dockerfile: Dockerfile
+      ports:
+        - "8080:8080"
+      networks:
+        - movies-network
+      environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+#        - ConnectionStrings__MoviesDb=Server=mssql,1433;Database=MoviesDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;
+      depends_on:
+        - mssql
 volumes:
-  sql-shard1:
-  sql-shard2:
+  mssql-data:
+
+
+networks:
+  movies-network:
+    driver: bridge

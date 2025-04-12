@@ -7,15 +7,12 @@ public static class ApiEndpoints
     public static class Movies
     {
         private const string Base = $"{ApiBase}/movies";
-
+        
         public const string Create = Base;
         public const string Get = $"{Base}/{{idOrSlug}}";
         public const string GetAll = $"{Base}/GetAll";
         public const string Update = $"{Base}/{{id:guid}}";
         public const string Delete = $"{Base}/{{id:guid}}";
-
-
-
         
     }
 

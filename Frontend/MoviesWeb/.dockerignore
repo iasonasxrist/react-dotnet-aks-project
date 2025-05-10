@@ -1,0 +1,35 @@
+# Git files
+.git
+.gitignore
+
+node_modules
+
+# Build output directory (we build inside the container)
+dist
+build
+
+# Docker files
+Dockerfile
+.dockerignore
+nginx.conf
+
+# Environment variables
+.env*
+!.env.example
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor/OS specific
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+.DS_Store

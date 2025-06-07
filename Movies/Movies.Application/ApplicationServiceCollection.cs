@@ -12,9 +12,9 @@ public static class ApplicationServiceCollection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddSingleton<IMovieRepository, MovieRepository>();
-        services.AddSingleton<IMovieService, MovieService>();
-        services.AddValidatorsFromAssemblyContaining<IApplicationMarker>(ServiceLifetime.Singleton);
+        services.AddScoped<IMovieRepository, MovieRepository>();
+        services.AddScoped<IMovieService,MovieService>();
+        services.AddValidatorsFromAssemblyContaining<IApplicationMarker>(ServiceLifetime.Scoped);
         return services;
     }
 

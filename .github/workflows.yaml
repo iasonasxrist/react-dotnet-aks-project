@@ -1,0 +1,66 @@
+name: Build and Deploy Full Stack App
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  ACR_NAME: aksprojectacr0001 # without .azurecr.io
+  IMAGE_PREFIX: aksprojectacr0001.azurecr.io/myapp
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Setup .NET 8
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+
+      # Setup Node.js 22
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22"
+
+      # Login to Azure
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Login to ACR
+      - name: Docker Login to ACR
+        run: az acr login --name $ACR_NAME
+
+      # Build frontend (React)
+      - name: Build React frontend
+        working-directory: Frontend/MoviesWeb
+        run: |
+          npm install
+          npm run build
+
+      # Publish backend (.NET)
+      - name: Publish .NET backend
+        working-directory: Movies/Movies.Api
+        run: |
+          dotnet restore
+          dotnet publish -c Release -o publish
+
+      # Build and push backend Docker image
+      - name: Build and push backend image
+        run: |
+          docker build -t $IMAGE_PREFIX-backend:latest ./backend
+          docker push $IMAGE_PREFIX-backend:latest
+
+      # Build and push frontend Docker image
+      - name: Build and push frontend image
+        run: |
+          docker build -t $IMAGE_PREFIX-frontend:latest ./frontend
+          docker push $IMAGE_PREFIX-frontend:latest

@@ -5,6 +5,8 @@ on:
     branches:
       - master
 
+  workflow_dispatch:
+
 env:
   ACR_NAME: aksprojectacr0001 # without .azurecr.io
   IMAGE_PREFIX: aksprojectacr0001.azurecr.io/myapp

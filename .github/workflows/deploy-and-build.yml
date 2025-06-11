@@ -59,7 +59,7 @@ jobs:
 
       # Publish backend (.NET)
       - name: Publish .NET backend
-        working-directory: Movies/Movies.Api
+        working-directory: Movies/
         run: |
           dotnet restore
           dotnet publish -c Release -o publish
@@ -67,7 +67,7 @@ jobs:
       # Build and push backend Docker image
       - name: Build and push backend image
         run: |
-          docker build -t $IMAGE_PREFIX-backend:latest ./Movies/Movies.Api
+          docker build -t $IMAGE_PREFIX-backend:latest ./Movies
           docker push $IMAGE_PREFIX-backend:latest
 
       # Build and push frontend Docker image

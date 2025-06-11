@@ -52,7 +52,7 @@ jobs:
 
       # Build frontend (React)
       - name: Build React frontend
-        working-directory: Frontend/MoviesWeb
+        working-directory: Frontend/
         run: |
           npm install
           npm run build
@@ -67,7 +67,7 @@ jobs:
       # Build and push frontend Docker image
       - name: Build and push frontend image
         run: |
-          docker build -t $IMAGE_PREFIX-frontend:latest ./Frontend/MoviesWeb
+          docker build -t $IMAGE_PREFIX-frontend:latest Frontend/
           docker push $IMAGE_PREFIX-frontend:latest
 
       # Build and push backend Docker image

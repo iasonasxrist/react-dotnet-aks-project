@@ -61,7 +61,7 @@ jobs:
       - name: Publish .NET backend
         working-directory: Movies/
         run: |
-          dotnet restore
+          dotnet restore Movies.sln
           dotnet publish -c Release -o publish
 
       # Build and push frontend Docker image

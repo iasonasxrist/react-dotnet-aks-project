@@ -49,3 +49,8 @@ This project demonstrates a shared database architecture with range-based partit
 ```bash
 git clone [repository-url]
 cd [project-directory]
+```
+
+### Example of costs for development AKS 
+![costanalysis_charts](https://github.com/user-attachments/assets/71eebef1-736b-4227-a163-fb0c3634439f)
+

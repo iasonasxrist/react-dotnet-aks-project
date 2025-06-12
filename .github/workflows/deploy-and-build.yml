@@ -67,9 +67,12 @@ jobs:
       # Build and push frontend Docker image
       - name: Build and push frontend image
         run: |
-            docker build -t $IMAGE_PREFIX-frontend:latest .
-            docker push $IMAGE_PREFIX-frontend:latest
+          docker build \
+            -t ${IMAGE_PREFIX}/frontend:latest \
+            -f ./Frontend/MoviesWeb/Dockerfile \
+            ./Frontend/MoviesWeb
 
+          docker push ${IMAGE_PREFIX}/frontend:latest
       # Build and push backend Docker image
       # - name: Build and push backend image
       #   run: |

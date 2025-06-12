@@ -69,9 +69,9 @@ jobs:
 
       # Publish backend (.NET)
       - name: Publish .NET backend
-        working-directory: Movies/
+        working-directory: sharded-based-api-database/
         run: |
-          dotnet restore Movies.sln
+          dotnet restore RestApiCourse.sln
           dotnet publish -c Release -o publish
 
       #Build and push backend Docker image

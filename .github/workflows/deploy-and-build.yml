@@ -57,13 +57,6 @@ jobs:
           npm install
           npm run build
 
-      # Publish backend (.NET)
-      # - name: Publish .NET backend
-      #   working-directory: Movies/
-      #   run: |
-      #     dotnet restore Movies.sln
-      #     dotnet publish -c Release -o publish
-
       # Build and push frontend Docker image
       - name: Build and push frontend image
         run: |
@@ -73,8 +66,20 @@ jobs:
             ./Frontend/MoviesWeb
 
           docker push ${IMAGE_PREFIX}/frontend:latest
-      # Build and push backend Docker image
-      # - name: Build and push backend image
-      #   run: |
-      #     docker build -t $IMAGE_PREFIX-backend:latest ./Movies
-      #     docker push $IMAGE_PREFIX-backend:latest
+
+      # Publish backend (.NET)
+      - name: Publish .NET backend
+        working-directory: Movies/
+        run: |
+          dotnet restore Movies.sln
+          dotnet publish -c Release -o publish
+
+      #Build and push backend Docker image
+      - name: Build and push backend image
+        run: |
+          docker build \
+            -t ${IMAGE_PREFIX}/backend:latest \
+            -f ./Movies/Dockerfile \
+            ./Movies
+
+          docker push $IMAGE_PREFIX-backend:latest

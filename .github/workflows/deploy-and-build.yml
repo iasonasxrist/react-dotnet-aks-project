@@ -52,7 +52,7 @@ jobs:
 
       # Build frontend (React)
       - name: Build React frontend
-        working-directory: Frontend/
+        working-directory: Frontend/MovieWeb
         run: |
           npm install
           npm run build

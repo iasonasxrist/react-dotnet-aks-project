@@ -91,7 +91,7 @@ jobs:
             -f ./Movies/Dockerfile \
             ./Movies
 
-          docker push $IMAGE_PREFIX-backend:latest
+          docker push ${IMAGE_PREFIX}/backend:latest
 
           docker build -t  ${IMAGE_PREFIX}/backend:latest -f Movies/Dockerfile .
           docker push  ${IMAGE_PREFIX}/backend:latest

@@ -37,7 +37,7 @@ const MovieSearch: React.FC<MovieSearchProps> = ({
       <CardHeader className="pb-4">
         <CardTitle className="text-lg flex items-center gap-2">
           <Search size={20} className="text-accent" />
-          Search Movies
+          Search
         </CardTitle>
       </CardHeader>
       <CardContent>

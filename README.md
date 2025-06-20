@@ -12,9 +12,10 @@ GitHub: [sharded-based-api-database](https://github.com/iasonasxrist/sharded-bas
 
 | Tool           | Purpose                    |
 | -------------- | -------------------------- |
+| React.js       |  Frontend SPA              |
 | ASP.NET Core   | REST API backend           |
 | EF Core        | ORM with PostgreSQL        |
-| PostgreSQL     | Range partitioned DB       |
+| MSSQL-Server   | Range partitioned DB       |
 | ArgoCD         | GitOps-based Kubernetes CD |
 | AKS            | Azure Kubernetes Service   |
 | GitHub Actions | CI/CD automation           |
@@ -33,7 +34,7 @@ This project demonstrates a shared database architecture with range-based partit
 - Multiple "logical tenants" (data segments based on ID ranges) share the same database instance.
 - Data segregation is managed via partitioning based on an `Id` range.
 
-### Range-Based Partitioning (PostgreSQL)
+### Range-Based Partitioning (MSSQL-Server)
 
 - Tables are partitioned based on ranges of `Movie.Id` values (UUID in this case).
 - Each partition contains movies whose `Id` falls within a specific range.
@@ -54,8 +55,7 @@ This project demonstrates a shared database architecture with range-based partit
 ## Prerequisites
 
 1.  **.NET SDK:** Download and install the .NET SDK ([https://dotnet.microsoft.com/download](https://dotnet.microsoft.com/download)).
-2.  **PostgreSQL:** Install PostgreSQL database server ([https://www.postgresql.org/download/](https://www.postgresql.org/download/)).
-3.  **IDE:** Visual Studio or Visual Studio Code with C# extension.
+2.  **IDE:** Visual Studio or Visual Studio Code with C# extension.
 
 ## Setup and Configuration
 
@@ -66,18 +66,23 @@ git clone [repository-url]
 cd [project-directory]
 ```
 
-### Example of costs for development AKS
 
-![costanalysis_charts](https://github.com/user-attachments/assets/71eebef1-736b-4227-a163-fb0c3634439f)
 
-## Guide to give permissions to ACRregistry for Images
+## 🔐 Next Step: Add This to GitHub
 
-```az ad sp create-for-rbac \
-  --name github-acr-pusher \
-  --role acrpush \
-  --scopes /subscriptions/subId/resourceGroups/iasonasaz204/providers/Microsoft.ContainerRegistry/registries/acr-name \
-  --sdk-auth
-```
+## Configure GitHub Actions with Federated Credentials for Azure
+
+### 1. Add AZURE_CREDENTIALS Secret to GitHub
+
+After running the Azure CLI command to create a service principal:
+
+bash
+az ad sp create-for-rbac \
+ --name github-acr-pusher \
+ --role acrpush \
+ --scopes /subscriptions/<subId>/resourceGroups/<resourceGroup>/providers/Microsoft.ContainerRegistry/registries/<acr-name> \
+ --sdk-auth
+ ```
 
 ### Returns Example
 
@@ -95,21 +100,6 @@ cd [project-directory]
 "managementEndpointUrl": "https://management.core.windows.net/"
 }
 ```
-
-## 🔐 Next Step: Add This to GitHub
-
-## Configure GitHub Actions with Federated Credentials for Azure
-
-### 1. Add AZURE_CREDENTIALS Secret to GitHub
-
-After running the Azure CLI command to create a service principal:
-
-bash
-az ad sp create-for-rbac \
- --name github-acr-pusher \
- --role acrpush \
- --scopes /subscriptions/<subId>/resourceGroups/<resourceGroup>/providers/Microsoft.ContainerRegistry/registries/<acr-name> \
- --sdk-auth
 
 🔐 Copy the full JSON output and add it to your GitHub repository:
 
@@ -339,7 +329,9 @@ kubectl get pods
 - Link GitHub Actions for CI → ACR → AKS
 
 ---
+## Example of costs for development AKS  📘
 
+![costanalysis_charts](https://github.com/user-attachments/assets/71eebef1-736b-4227-a163-fb0c3634439f)
 ## 🙌 Author
 
 Made with 💡 by [@iasonasxrist](https://github.com/iasonasxrist)

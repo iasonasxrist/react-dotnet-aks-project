@@ -1,4 +1,4 @@
-# 🚀 React + ASP.NET Core +  MSSQL + ArgoCD Deployment with GitOps on AKS
+# 🚀 React + ASP.NET Core +  MSSQL + AKS(Kubernetes) + ArgoCD 
 
 ## This project demonstrates how to deploy a range-partitioned ASP.NET Core API using PostgreSQL and ArgoCD for GitOps delivery in an AKS environment.
 

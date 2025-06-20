@@ -1,4 +1,4 @@
-# 🚀 ASP.NET Core + PostgreSQL + ArgoCD Deployment with GitOps on AKS
+# 🚀 React + ASP.NET Core +  MSSQL + ArgoCD Deployment with GitOps on AKS
 
 ## This project demonstrates how to deploy a range-partitioned ASP.NET Core API using PostgreSQL and ArgoCD for GitOps delivery in an AKS environment.
 
@@ -12,10 +12,10 @@ GitHub: [sharded-based-api-database](https://github.com/iasonasxrist/sharded-bas
 
 | Tool           | Purpose                    |
 | -------------- | -------------------------- |
-| React.js       |  Frontend SPA              |
+| React.js       | Frontend SPA               |
 | ASP.NET Core   | REST API backend           |
-| EF Core        | ORM with PostgreSQL        |
-| MSSQL-Server   | Range partitioned DB       |
+| EF Core        | ORM                        |
+| MSSQL          | Range partitioned DB       |
 | ArgoCD         | GitOps-based Kubernetes CD |
 | AKS            | Azure Kubernetes Service   |
 | GitHub Actions | CI/CD automation           |

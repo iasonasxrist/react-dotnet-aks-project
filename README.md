@@ -1,6 +1,6 @@
 # 🚀 React + ASP.NET Core +  MSSQL + AKS(Kubernetes) + ArgoCD 
 
-## This project demonstrates how to deploy a range-partitioned ASP.NET Core API using PostgreSQL and ArgoCD for GitOps delivery in an AKS environment.
+## This project demonstrates how to deploy a range-partitioned ASP.NET Core API using MSSQL and ArgoCD for GitOps delivery in an AKS environment.
 
 ## 📂 Repository
 
@@ -25,7 +25,7 @@ GitHub: [sharded-based-api-database](https://github.com/iasonasxrist/sharded-bas
 
 ## Overview
 
-This project demonstrates a shared database architecture with range-based partitioning using ASP.NET Core, PostgreSQL, and a Movies API. In this scenario, the partitioning is based on the `Id` of the `Movie` entity. This might be used to ensure data is distributed evenly across partitions, particularly if the `Id` values are generated in a sequential manner.
+This project demonstrates a shared database architecture with range-based partitioning using ASP.NET Core, MSSQL, and a Movies API. In this scenario, the partitioning is based on the `Id` of the `Movie` entity. This might be used to ensure data is distributed evenly across partitions, particularly if the `Id` values are generated in a sequential manner.
 
 ## Architecture
 

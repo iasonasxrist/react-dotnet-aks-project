@@ -17,7 +17,7 @@ const MovieForm = ({ onSave, movies = [] }: Props) => {
     title: "",
     slug: "",
     yearOfRelease: "",
-    genres: String[],
+    genres: [],
   });
 
   useEffect(() => {

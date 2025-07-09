@@ -1,10 +1,11 @@
+using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace Movies.Application.Models;
 
-public  partial class Movie :MovieBase
+public partial class Movie :MovieBase
 {
-    private string GenerateSlug()
+    public static string GenerateSlug(string Title, string YearOfRelease)
     {
         var sluggedTitle = SlugRegex().Replace(Title, string.Empty)
             .ToLower().Replace(" ", "-");

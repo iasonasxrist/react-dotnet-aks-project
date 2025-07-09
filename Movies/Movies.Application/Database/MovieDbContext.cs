@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Movies.Application.Models;
 
-namespace Movies.Application;
+namespace Movies.Application.Database;
 
 public class MovieDbContext : DbContext
 {
@@ -13,7 +13,7 @@ public class MovieDbContext : DbContext
 
     public MovieDbContext()
     {
-        
+
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

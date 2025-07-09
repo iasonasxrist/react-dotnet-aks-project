@@ -3,7 +3,8 @@ name: Build and Deploy Full Stack App
 on:
   push:
     branches:
-      - master
+      # - master //commented for prevent ci/cd trigger
+      - dev
 
   workflow_dispatch:
 

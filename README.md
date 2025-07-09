@@ -4,7 +4,7 @@
 
 ## 📂 Repository
 
-GitHub: [sharded-based-api-database](https://github.com/iasonasxrist/sharded-based-api-database)
+GitHub: [react-dotnet-aks-project](https://github.com/iasonasxrist/react-dotnet-aks-project)
 
 ---
 
@@ -171,8 +171,8 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 ### 1. 📥 Clone the Repository
 
 ```bash
-git clone https://github.com/iasonasxrist/sharded-based-api-database.git
-cd sharded-based-api-database
+git clone https://github.com/iasonasxrist/react-dotnet-aks-project.git
+cd react-dotnet-aks-project
 ```
 
 ---
@@ -251,7 +251,7 @@ ssh-keygen -t ed25519 -C "argocd-deploy-key" -f ./argocd_deploy_key
 ### 8. ➕ Add Git Repo to ArgoCD
 
 ```bash
-argocd repo add git@github.com:iasonasxrist/sharded-based-api-database.git \
+argocd repo add git@github.com:iasonasxrist/react-dotnet-aks-project.git \
   --ssh-private-key-path ./argocd_deploy_key
 ```
 

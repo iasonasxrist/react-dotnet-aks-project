@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Movies.Application.Models;
 using Movies.Application.Repositories;
+using Movies.Contracts.Requests;
 
 namespace Movies.Application.Services;
 
@@ -15,10 +16,11 @@ public class MovieService : IMovieService
         _movieValidator = movieValidator;
     }
 
-    public async Task<bool> CreateAsync(Movie movie, CancellationToken token = default)
+    public async Task<Movie> CreateAsync(CreateMovieRequest movie, CancellationToken token = default)
     {
-        await _movieValidator.ValidateAndThrowAsync(movie, cancellationToken: token);
-        return await _movieRepository.CreateAsync(movie, token);
+        //await _movieValidator.ValidateAndThrowAsync(movie, cancellationToken: token);
+        var newMovie = await _movieRepository.CreateAsync(movie, token);
+        return newMovie;
     }
 
     public Task<Movie?> GetByIdAsync(Guid id, CancellationToken token = default)

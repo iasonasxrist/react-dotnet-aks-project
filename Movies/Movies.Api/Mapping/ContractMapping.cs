@@ -12,7 +12,6 @@ public static class ContractMapping
         {
             Title = request.Title,
             Id = Guid.NewGuid(),
-            Genres = request.Genres.ToList(),
             YearOfRelease = request.YearOfRelease
         };
     }

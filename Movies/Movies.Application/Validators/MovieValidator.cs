@@ -15,9 +15,6 @@ public class MovieValidator : AbstractValidator<Movie>
         RuleFor(x => x.Id)
             .NotEmpty();
 
-        RuleFor(x => x.Genres)
-            .NotEmpty();
-
         RuleFor(x => x.Title)
             .NotEmpty();
 

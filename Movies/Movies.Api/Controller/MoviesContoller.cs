@@ -19,8 +19,7 @@ public class MoviesController : ControllerBase
     public async Task<IActionResult> Create([FromBody]CreateMovieRequest request,
         CancellationToken token)
     {
-        var movie = request.MapToMovie();
-        await _movieService.CreateAsync(movie, token);
+        await _movieService.CreateAsync(request, token);
         var movieResponse = movie.MapToResponse();
         return CreatedAtAction(nameof(Get), new { idOrSlug = movie.Id }, movieResponse);
     }
